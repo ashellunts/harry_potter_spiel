@@ -1,22 +1,7 @@
-///////////////////////
-// Welcome to Cursor //
-///////////////////////
-
-/*
-Step 1: Try generating a react component that lets you play tictactoe with Cmd+K or Ctrl+K on a new line.
-  - Then integrate it into the code below and run with npm start
-
-Step 2: Try highlighting all the code with your mouse, then hit Cmd+k or Ctrl+K. 
-  - Instruct it to change the game in some way (e.g. add inline styles, add a start screen, make it 4x4 instead of 3x3)
-
-Step 3: Hit Cmd+L or Ctrl+L and ask the chat what the code does
-
-Step 4: To try out cursor on your own projects, go to the file menu (top left) and open a folder.
-*/
-
 
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
+import Confetti from 'react-confetti';
 
 function HarryPotterQuest() {
   const [aktuelleFrageIndex, setAktuelleFrageIndex] = useState(0);
@@ -26,7 +11,7 @@ function HarryPotterQuest() {
   const [antwortGeprueft, setAntwortGeprueft] = useState(false);
   const [punkte, setPunkte] = useState(0);
   const [spielBeendet, setSpielBeendet] = useState(false);
-  const [level, setLevel] = useState(1);  
+  const [level, setLevel] = useState(1);
 
   const fragen = [
     {
@@ -151,6 +136,7 @@ function HarryPotterQuest() {
         <button onClick={spielNeuStarten} style={{ marginTop: '20px', padding: '10px', fontSize: '1.2em' }}>
           Noch mal
         </button>
+        {hatGewonnen && <Confetti />}
       </div>
     );
   }
@@ -178,8 +164,8 @@ function HarryPotterQuest() {
         </button>
       ))}
       <br />
-      <button 
-        onClick={pruefeAntwort} 
+      <button
+        onClick={pruefeAntwort}
         style={{ marginTop: '20px', padding: '10px' }}
         disabled={antwortGeprueft || !ausgewaehlteAntwort}
       >

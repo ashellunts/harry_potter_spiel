@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/harry_potter_spiel/static/js/main.2ba8e0cd.js",
+    "main.js": "/harry_potter_spiel/static/js/main.af0f64db.js",
     "index.html": "/harry_potter_spiel/index.html",
-    "main.2ba8e0cd.js.map": "/harry_potter_spiel/static/js/main.2ba8e0cd.js.map"
+    "main.af0f64db.js.map": "/harry_potter_spiel/static/js/main.af0f64db.js.map"
   },
   "entrypoints": [
-    "static/js/main.2ba8e0cd.js"
+    "static/js/main.af0f64db.js"
   ]
 }
