@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.2ba8e0cd.js",
-    "index.html": "/index.html",
-    "main.2ba8e0cd.js.map": "/static/js/main.2ba8e0cd.js.map"
+    "main.js": "/harry_potter_spiel/static/js/main.2ba8e0cd.js",
+    "index.html": "/harry_potter_spiel/index.html",
+    "main.2ba8e0cd.js.map": "/harry_potter_spiel/static/js/main.2ba8e0cd.js.map"
   },
   "entrypoints": [
     "static/js/main.2ba8e0cd.js"
