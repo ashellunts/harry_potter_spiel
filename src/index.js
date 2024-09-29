@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Confetti from 'react-confetti';
 
 function HarryPotterQuest() {
+  const [spielGestartet, setSpielGestartet] = useState(false);
   const [aktuelleFrageIndex, setAktuelleFrageIndex] = useState(0);
   const [ausgewaehlteAntwort, setAusgewaehlteAntwort] = useState('');
   const [ergebnis, setErgebnis] = useState('');
@@ -121,10 +121,39 @@ function HarryPotterQuest() {
 
   const aktuelleFrage = fragen[aktuelleFrageIndex];
 
+  const containerStyle = {
+    backgroundImage: 'url("harry_potter_spiel/hintergrund.jpg")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: '20px',
+    color: 'white',
+    textShadow: '2px 2px 4px rgba(0,0,0,0.7)'
+  };
+
+  if (!spielGestartet) {
+    return (
+      <div style={containerStyle}>
+        <h1 style={{ marginTop: '50px', fontSize: '3em' }}>Harry Potter Quest</h1>
+        <button 
+          onClick={() => setSpielGestartet(true)} 
+          style={{ marginTop: '100px', padding: '15px 30px', fontSize: '1.5em', color: '#2c3e50', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+        >
+          Start
+        </button>
+      </div>
+    );
+  }
+
   if (spielBeendet) {
     const hatGewonnen = punkte >= 25; // Geändert von 20 auf 25
     return (
-      <div style={{ textAlign: 'center', padding: '20px' }}>
+      <div style={containerStyle}>
         <h1>Harry Potter Quest - Endergebnis</h1>
         <h2 style={{ fontSize: '3em', margin: '30px 0' }}>
           Du hast {punkte} von 50 Punkten erreicht!
@@ -142,27 +171,29 @@ function HarryPotterQuest() {
   }
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
+    <div style={containerStyle}>
       <h1>Harry Potter Quest</h1>
       <h2>Punkte: {punkte}</h2>
       <p>{aktuelleFrage.frage}</p>
-      {aktuelleFrage.optionen.map((option) => (
-        <button
-          key={option}
-          onClick={() => !antwortGeprueft && setAusgewaehlteAntwort(option)}
-          style={{
-            margin: '5px',
-            padding: '5px',
-            backgroundColor: '#f1f1f1',
-            fontWeight: ausgewaehlteAntwort === option ? 'bold' : 'normal',
-            opacity: antwortGeprueft ? 0.6 : 1,
-            cursor: antwortGeprueft ? 'not-allowed' : 'pointer'
-          }}
-          disabled={antwortGeprueft}
-        >
-          {option}
-        </button>
-      ))}
+      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+        {aktuelleFrage.optionen.map((option) => (
+          <button
+            key={option}
+            onClick={() => !antwortGeprueft && setAusgewaehlteAntwort(option)}
+            style={{
+              margin: '5px',
+              padding: '5px 10px',
+              backgroundColor: '#f1f1f1',
+              fontWeight: ausgewaehlteAntwort === option ? 'bold' : 'normal',
+              opacity: antwortGeprueft ? 0.6 : 1,
+              cursor: antwortGeprueft ? 'not-allowed' : 'pointer'
+            }}
+            disabled={antwortGeprueft}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
       <br />
       <button
         onClick={pruefeAntwort}
